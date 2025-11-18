@@ -44,7 +44,7 @@ class Rllib_multi_agent(MultiAgentEnv):
         #이후 config에 layout name, horizon 등등을 넣어야함.
         super().__init__()
         config = config or {}
-        layout_name = config.get("layout_name", "cramped_room1")
+        layout_name = config.get("layout_name", "cramped_room")
         horizon = config.get("horizon", 1000000)
         self.reward_shaping = config.get("reward_shaping", True)
         mdp = OvercookedGridworld.from_layout_name(layout_name) 
