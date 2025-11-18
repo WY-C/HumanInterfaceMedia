@@ -1,5 +1,5 @@
-실행방법
-1. requirements.txt 설치
+실행방법(python 3.10)
+1. requirements.txt 설치 (pip install -r requirements.txt)
 2. pip install overcooked-ai
 3. git clone https://github.com/HumanCompatibleAI/overcooked_ai.git
 같은 폴더에
