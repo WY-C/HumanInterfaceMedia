@@ -77,7 +77,7 @@ running = True
 obs, info = my_env.reset()
 
 # --- ⭐️ 2. 타이머 설정 ---
-game_duration_seconds = 30
+game_duration_seconds = 60
 game_duration_ms = game_duration_seconds * 1000  # 밀리초 단위로 변환
 start_time = pygame.time.get_ticks()  # 게임 시작 시간 기록
 flag = True
