@@ -10,6 +10,8 @@ import os
 import numpy as np
 import math  # ⭐️ 시간 계산(올림)을 위해 추가
 
+from humaninterfacemedia.load_grid_util import load_layout_grid_from_name
+
 from ray.tune.registry import register_env
 import ray
 ray.init()
@@ -30,12 +32,15 @@ DISH_DISPENSER = 'D'
 SERVING_LOC = 'S'
 EMPTY = ' '
 
-LAYOUT_GRID = [
-    [COUNTER, COUNTER,         POT,             COUNTER,         COUNTER],
-    [ONION_DISPENSER, EMPTY,   EMPTY,           EMPTY,           ONION_DISPENSER],
-    [COUNTER,         EMPTY,   EMPTY,           EMPTY,           COUNTER],
-    [COUNTER, DISH_DISPENSER,  COUNTER,         SERVING_LOC,     COUNTER]
-]
+# LAYOUT_GRID = [
+#     [COUNTER, COUNTER,         POT,             COUNTER,         COUNTER],
+#     [ONION_DISPENSER, EMPTY,   EMPTY,           EMPTY,           ONION_DISPENSER],
+#     [COUNTER,         EMPTY,   EMPTY,           EMPTY,           COUNTER],
+#     [COUNTER, DISH_DISPENSER,  COUNTER,         SERVING_LOC,     COUNTER]
+# ]
+LAYOUT_NAME = "cramped_room2"
+LAYOUT_GRID = load_layout_grid_from_name(LAYOUT_NAME)
+print(LAYOUT_GRID)
 
 # --- 1. 초기화 (루프 시작 전) ---
 pygame.init()
@@ -51,7 +56,7 @@ except: # 폰트 로드 실패 시 기본값 사용
 visualizer = StateVisualizer()
 
 mode = "user_input"
-my_env = FCP_Rllib_for_visualization()
+my_env = FCP_Rllib_for_visualization({"layout_name": LAYOUT_NAME})
 
 initial_surface = visualizer.render_state(my_env.multi_agent_env.overcooked_env.state, grid=LAYOUT_GRID)
 screen_width, screen_height = initial_surface.get_size()
