@@ -91,16 +91,24 @@ while running:
         elif event.type == pygame.VIDEORESIZE:
             screen = pygame.display.set_mode(event.size, pygame.RESIZABLE)
         if event.type == pygame.KEYDOWN:
+
+            # 경과시간
+            elapsed_ms = pygame.time.get_ticks() - start_time
             if event.key == pygame.K_LEFT:
                 player_action = 3
+                print(f"[{elapsed_ms:5d} ms] K_move : LEFT")
             elif event.key == pygame.K_RIGHT:
                 player_action = 2
+                print(f"[{elapsed_ms:5d} ms] K_move : RIGHT")
             elif event.key == pygame.K_UP:
                 player_action = 0
+                print(f"[{elapsed_ms:5d} ms] K_move : UP")
             elif event.key == pygame.K_DOWN:
                 player_action = 1
+                print(f"[{elapsed_ms:5d} ms] K_move : DOWN")
             elif event.key == pygame.K_SPACE:
                 player_action = 5
+                print(f"[{elapsed_ms:5d} ms] K_act  : SPACE (interact)")
             # else: player_action = 4 (기본값)
     if flag:
         flag = False
