@@ -16,6 +16,16 @@
 (anaconda3\envs\name\lib\site-packages\overcooked_ai_py\mdp\overcooked_mdp.py) 들어가서
 1596~1601 주석처리하기
    
+5. overcooked_mdp.py begin_cooking함수를
+    def begin_cooking(self):
+        if not self.is_idle:
+            raise ValueError("Cannot begin cooking this soup at this time")
+        if len(self.ingredients) == 0:
+            raise ValueError("Must add at least one ingredient to soup before you can begin cooking")
+        #수정사항
+        if len(self.ingredients) == 3:
+            self._cooking_tick = 0
+로 수정 (모든 재료가 준비되어야만 요리 시작)
 ---
 ## 2. 맵 별 KLM 설정
 ### Keystroke-Level Model(KLM) for overcooked
