@@ -7,12 +7,20 @@ from overcooked_ai_py.visualization.state_visualizer import StateVisualizer
 import pygame
 import sys
 import os
+from dotenv import load_dotenv
 import numpy as np
 import math  # ⭐️ 시간 계산(올림)을 위해 추가
+
+from humaninterfacemedia.grid_util import load_layout_grid_from_name
+from humaninterfacemedia.grid_util import sync_custom_layouts
 
 from ray.tune.registry import register_env
 import ray
 ray.init()
+load_dotenv()
+
+# 맵 동기화
+sync_custom_layouts()
 
 # ... (환경 생성 및 등록 코드는 동일) ...
 def single_env_creator(env_config):
@@ -30,12 +38,15 @@ DISH_DISPENSER = 'D'
 SERVING_LOC = 'S'
 EMPTY = ' '
 
-LAYOUT_GRID = [
-    [COUNTER, COUNTER,         POT,             COUNTER,         COUNTER],
-    [ONION_DISPENSER, EMPTY,   EMPTY,           EMPTY,           ONION_DISPENSER],
-    [COUNTER,         EMPTY,   EMPTY,           EMPTY,           COUNTER],
-    [COUNTER, DISH_DISPENSER,  COUNTER,         SERVING_LOC,     COUNTER]
-]
+# LAYOUT_GRID = [
+#     [COUNTER, COUNTER,         POT,             COUNTER,         COUNTER],
+#     [ONION_DISPENSER, EMPTY,   EMPTY,           EMPTY,           ONION_DISPENSER],
+#     [COUNTER,         EMPTY,   EMPTY,           EMPTY,           COUNTER],
+#     [COUNTER, DISH_DISPENSER,  COUNTER,         SERVING_LOC,     COUNTER]
+# ]
+LAYOUT_NAME = os.getenv("LAYOUT_NAME", "cramped_room")
+LAYOUT_GRID = load_layout_grid_from_name(LAYOUT_NAME)
+print("map loaded: " + LAYOUT_NAME)
 
 # --- 1. 초기화 (루프 시작 전) ---
 pygame.init()
@@ -51,7 +62,7 @@ except: # 폰트 로드 실패 시 기본값 사용
 visualizer = StateVisualizer()
 
 mode = "user_input"
-my_env = FCP_Rllib_for_visualization()
+my_env = FCP_Rllib_for_visualization({"layout_name": LAYOUT_NAME})
 
 initial_surface = visualizer.render_state(my_env.multi_agent_env.overcooked_env.state, grid=LAYOUT_GRID)
 screen_width, screen_height = initial_surface.get_size()
@@ -66,7 +77,7 @@ running = True
 obs, info = my_env.reset()
 
 # --- ⭐️ 2. 타이머 설정 ---
-game_duration_seconds = 30
+game_duration_seconds = 60
 game_duration_ms = game_duration_seconds * 1000  # 밀리초 단위로 변환
 start_time = pygame.time.get_ticks()  # 게임 시작 시간 기록
 flag = True
@@ -80,16 +91,24 @@ while running:
         elif event.type == pygame.VIDEORESIZE:
             screen = pygame.display.set_mode(event.size, pygame.RESIZABLE)
         if event.type == pygame.KEYDOWN:
+
+            # 경과시간
+            elapsed_ms = pygame.time.get_ticks() - start_time
             if event.key == pygame.K_LEFT:
                 player_action = 3
+                print(f"[{elapsed_ms:5d} ms] K_move : LEFT")
             elif event.key == pygame.K_RIGHT:
                 player_action = 2
+                print(f"[{elapsed_ms:5d} ms] K_move : RIGHT")
             elif event.key == pygame.K_UP:
                 player_action = 0
+                print(f"[{elapsed_ms:5d} ms] K_move : UP")
             elif event.key == pygame.K_DOWN:
                 player_action = 1
+                print(f"[{elapsed_ms:5d} ms] K_move : DOWN")
             elif event.key == pygame.K_SPACE:
                 player_action = 5
+                print(f"[{elapsed_ms:5d} ms] K_act  : SPACE (interact)")
             # else: player_action = 4 (기본값)
     if flag:
         flag = False
