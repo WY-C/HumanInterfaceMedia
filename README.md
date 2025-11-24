@@ -31,7 +31,6 @@
 tutorial의 경우, layout을 tutorial로 두고, python -m humaninterfacemedia.tutorial로 실행.
 느린걸로 시작해서, 0을 누르면 빨라진다.
 사용자가 충분히 연습했으면, 실험을 시작한다. latin square rule를 사용한다.
-실험 시작시, 모든 layout은 **반드시** _1만 사용 (easy1_1.layout 등)
 ---
 ## 2. 맵 별 KLM 설정
 ### Keystroke-Level Model(KLM) for overcooked
