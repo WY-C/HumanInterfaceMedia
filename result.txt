@@ -1,0 +1,16 @@
+Number : 1, Layout : easy-2, Score : 0
+Number : 45444554, Layout : easy-2, Score : 0
+Number : 1, Layout : easy-2, Score : 60
+Number : 1, Layout : easy2_1, Score : 120
+Number : 1, Layout : easy2_1, Score : 300
+Number : 1, Layout : easy2_1, Score : 120
+Number : 1, Layout : easy2_1, Score : 360
+Number : 12, Layout : easy2_1, Score : 380
+Number : 123, Layout : easy2_1, Score : 380
+Number : 1, Layout : easy2_1, Score : 60
+Number : 1, Layout : easy2_1, Score : 40
+Number : 1, Layout : easy2_1, Score : 60
+Number : 2, Layout : easy2_1, Score : 60
+Number : 4, Layout : easy2_1, Score : 20
+Number : 1, Layout : easy2_1, Score : 60
+Number : 1, Layout : easy2_1, Score : 0
