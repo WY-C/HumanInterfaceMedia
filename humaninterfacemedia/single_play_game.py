@@ -39,7 +39,7 @@ EMPTY = ' '
 
 #실험시 수정할 변수들
 LAYOUT_NAME = os.getenv("LAYOUT_NAME", "hard1")
-tick = 60
+tick = os.getenv("TICK", 15)
 LAYOUT_GRID = load_layout_grid_from_name(LAYOUT_NAME)
 print("map loaded: " + LAYOUT_NAME)
 

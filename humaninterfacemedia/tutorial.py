@@ -1,6 +1,6 @@
 import imageio
 from humaninterfacemedia.env import FCP_Rllib_for_visualization
-from my_env.Rllib_multi_agent import Rllib_multi_agent
+from humaninterfacemedia.env import Rllib_multi_agent
 from overcooked_ai_py.mdp.overcooked_mdp import OvercookedGridworld
 from overcooked_ai_py.mdp.overcooked_env import OvercookedEnv
 from overcooked_ai_py.visualization.state_visualizer import StateVisualizer
@@ -44,7 +44,7 @@ EMPTY = ' '
 #     [COUNTER,         EMPTY,   EMPTY,           EMPTY,           COUNTER],
 #     [COUNTER, DISH_DISPENSER,  COUNTER,         SERVING_LOC,     COUNTER]
 # ]
-LAYOUT_NAME = os.getenv("LAYOUT_NAME", "tutorial")
+LAYOUT_NAME = "tutorial"
 LAYOUT_GRID = load_layout_grid_from_name(LAYOUT_NAME)
 print("map loaded: " + LAYOUT_NAME)
 
