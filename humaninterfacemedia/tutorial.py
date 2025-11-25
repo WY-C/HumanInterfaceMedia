@@ -85,7 +85,7 @@ flag1 = False
 
 #todo
 number = input("사용자 번호를 입력하세요")
-tick = 15
+tick = 5
 #엔터 누르고 게임 시작.
 while True:
     for event in pygame.event.get():
@@ -126,7 +126,10 @@ while running:
             elif event.key == pygame.K_SPACE:
                 player_action = 5
             elif event.key == pygame.K_0:
-                tick = 60
+                if tick == 5:
+                    tick = 30
+                else:
+                    tick = 5
                 #print(f"[{elapsed_ms:5d} ms] K_act  : SPACE (interact)")
             # else: player_action = 4 (기본값)
     if flag:
