@@ -1,0 +1,6 @@
+.DS_Store
+.env
+.idea
+.venv
+my_env
+**/__pycache/**
