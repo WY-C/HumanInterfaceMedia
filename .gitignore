@@ -4,3 +4,7 @@
 .venv
 my_env
 **/__pycache/**
+GIF
+input
+result.txt
+humaninterfacemedia/__pycache__/

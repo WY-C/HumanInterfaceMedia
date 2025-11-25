@@ -39,7 +39,7 @@ EMPTY = ' '
 
 #실험시 수정할 변수들
 LAYOUT_NAME = os.getenv("LAYOUT_NAME", "hard1")
-tick = os.getenv("TICK", 15)
+tick = int(os.getenv("TICK", 15))
 LAYOUT_GRID = load_layout_grid_from_name(LAYOUT_NAME)
 print("map loaded: " + LAYOUT_NAME)
 
@@ -74,7 +74,7 @@ running = True
 obs, info = my_env.reset()
 
 #시간
-game_duration_seconds = 10
+game_duration_seconds = 60
 game_duration_ms = game_duration_seconds * 1000
 
 flag = True
